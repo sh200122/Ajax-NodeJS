@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX with Axios</title>
+  <!-- 引入 Axios 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <!-- 按钮，用于触发数据获取 -->
+  <button id="fetchDataBtn">Fetch Data</button>
+  <!-- 显示结果的区域 -->
+  <div id="result"></div>
+
+  <script>
+    // 为按钮添加点击事件监听器
+    document.getElementById('fetchDataBtn').addEventListener('click', () => {
+      // 使用 Axios 发送 GET 请求到服务器
+      axios.get('http://localhost:3000/api/data')
+        .then(response => {
+          // 请求成功后，将响应数据中的 message 显示在页面上
+          document.getElementById('result').innerText = response.data.message;
+        })
+        .catch(error => {
+          // 请求失败后，在控制台输出错误信息
+          console.error('Error fetching data:', error);
+        });
+    });
+  </script>
+</body>
+
+</html>
